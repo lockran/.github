@@ -21,7 +21,7 @@ jobs:
       with:
         serverHostname: 'depapi.zrmt.com'
         apiKey: ${{ secrets.DEPENDENCY_API_KEY }}
-        projectName: ${{ GITHUB_REPOSITORY }}
-        projectVersion: ${{ GITHUB_REF_NAME }}
+        projectName: ${GITHUB_REPOSITORY}
+        projectVersion: ${GITHUB_REF_NAME}
         bomFilename: "./sbom.json"
         autoCreate: true
