@@ -21,7 +21,7 @@ jobs:
     - uses: DependencyTrack/gh-upload-sbom@v3
       with:
         serverHostname: 'depapi.zrmt.com'
-        apiKey: ${{ secrets.DEPENDENCY_API_KEY }}
+        apiKey: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}
         projectName: ${GITHUB_REPOSITORY}
         projectVersion: ${GITHUB_REF_NAME}
         bomFilename: "/tmp/sbom.json"
