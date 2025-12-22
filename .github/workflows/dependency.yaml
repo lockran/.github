@@ -17,11 +17,12 @@ jobs:
       with:
         format: cyclonedx-json
         artifact-name: sbom.json
+        output-file: /tmp/sbom.json
     - uses: DependencyTrack/gh-upload-sbom@v3
       with:
         serverHostname: 'depapi.zrmt.com'
         apiKey: ${{ secrets.DEPENDENCY_API_KEY }}
         projectName: ${GITHUB_REPOSITORY}
         projectVersion: ${GITHUB_REF_NAME}
-        bomFilename: "./sbom.json"
+        bomFilename: "/tmp/sbom.json"
         autoCreate: true
