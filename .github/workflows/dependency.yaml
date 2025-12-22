@@ -1,0 +1,27 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Dependency Submission
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Anchore SBOM Action
+      uses: anchore/sbom-action@v0
+      with:
+        format: cyclonedx-json
+        artifact-name: sbom.json
+    - uses: DependencyTrack/gh-upload-sbom@v3
+      with:
+        serverHostname: 'depapi.zrmt.com'
+        apiKey: ${{ secrets.DEPENDENCY_API_KEY }}
+        projectName: ${{ GITHUB_REPOSITORY }}
+        projectVersion: ${{ GITHUB_REF_NAME }}
+        bomFilename: "./sbom.json"
+        autoCreate: true
