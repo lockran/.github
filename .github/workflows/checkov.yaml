@@ -11,6 +11,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read # for actions/checkout to fetch code
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "scan"
@@ -26,7 +28,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so follow-up steps can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
@@ -37,7 +39,7 @@ jobs:
           external_checks_repos: https://github.com/lockran/checkov_custom_policies
         
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v4
         
         # Results are generated only on a success or failure
         # this is required since GitHub by default won't run the next step
