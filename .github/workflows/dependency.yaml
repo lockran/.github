@@ -28,5 +28,6 @@ jobs:
         serverHostname: 'depapi.zrmt.com'
         apiKey: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}
         projectName: ${{ github.repository }} 
+        projectVersion: ${{ github.sha }}
         bomFilename: "/tmp/sbom.json"
         autoCreate: true
