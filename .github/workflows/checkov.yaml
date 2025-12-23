@@ -39,7 +39,7 @@ jobs:
           external_checks_repos: https://github.com/lockran/checkov_custom_policies
         
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         
         # Results are generated only on a success or failure
         # this is required since GitHub by default won't run the next step
